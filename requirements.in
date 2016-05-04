@@ -1,4 +1,11 @@
+#Base framework
 flask
-flask_sqlalchemy
-flask_wtf
+#SQLAlchemy extensions for flask and handling db migration on schema change
+flask-sqlalchemy
 sqlalchemy-migrate
+#Form input handling and validation
+flask-wtf
+#Manage user login state
+flask-login
+#Manage openid authorisation
+flask-openid

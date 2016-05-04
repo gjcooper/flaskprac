@@ -6,6 +6,9 @@
 #
 
 decorator==4.0.9          # via sqlalchemy-migrate
+defusedxml==0.4.1         # via python3-openid
+flask-login==0.3.2
+flask-openid==1.2.5
 flask-sqlalchemy==2.1
 flask-wtf==0.12
 flask==0.10.1
@@ -13,6 +16,7 @@ itsdangerous==0.24        # via flask
 Jinja2==2.8               # via flask
 MarkupSafe==0.23          # via jinja2
 pbr==1.9.1                # via sqlalchemy-migrate
+python3-openid==3.0.10    # via flask-openid
 six==1.10.0               # via sqlalchemy-migrate
 sqlalchemy-migrate==0.10.0
 SQLAlchemy==1.0.12        # via flask-sqlalchemy, sqlalchemy-migrate
