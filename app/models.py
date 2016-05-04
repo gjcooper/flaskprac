@@ -7,10 +7,26 @@ class User(db.Model):
     email = db.Column(db.String(128), index=True, unique=True)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
+    @property  # Required by Flask-Login
+    def is_authenticated(self):
+        return True
+
+    @property  # Required by Flask-Login
+    def is_active(self):
+        return True
+
+    @property  # Required by Flask-Login
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):  # Required by Flask-Login
+        return str(self.id)  # python 3
+
     def __repr__(self):
         """How obijects of the class are printed"""
         return '<User {}>'.format(self.nickname)
-        
+
+
 class Post(db.Model):
     """Represents a content post by one author"""
     id = db.Column(db.Integer, primary_key=True)
