@@ -4,3 +4,4 @@ venv/
 app.db
 db_repository
 testusers.py
+tmp/
