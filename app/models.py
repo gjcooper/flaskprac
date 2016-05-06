@@ -1,4 +1,5 @@
 from app import db
+from hashlib import md5
 
 
 class User(db.Model):
@@ -21,6 +22,11 @@ class User(db.Model):
 
     def get_id(self):  # Required by Flask-Login
         return str(self.id)  # python 3
+
+    def avatar(self, size):
+        gravurl = 'http://www.gravatar.com/avatar/{}?d=mm&s={:d}'
+        return gravurl.format(md5(self.email.encode('utf-8')).hexdigest(),
+                              size)
 
     def __repr__(self):
         """How obijects of the class are printed"""
