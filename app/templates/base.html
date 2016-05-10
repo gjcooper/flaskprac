@@ -1,12 +1,12 @@
 <html>
-	<head>
+    <head>
         {% if title %}
-		<title>{{ title }} - Visualisation Blog</title>
+        <title>{{ title }} - Visualisation Blog</title>
         {% else %}
         <title>Home - Visualisation Blog</title>
         {% endif %}
-	</head>
-	<body>
+    </head>
+    <body>
         <div>Visualisation Blog: 
             <a href="{{ url_for('index') }}">Home</a>
             {% if g.user.is_authenticated %}
@@ -25,6 +25,5 @@
             {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
-	</body>
+    </body>
 </html>
-

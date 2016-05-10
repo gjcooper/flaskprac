@@ -3,8 +3,9 @@ from flask import (render_template, flash, redirect, session, url_for, request,
 from flask.ext.login import (login_user, logout_user, current_user,
                              login_required)
 from app import app, db, lm, oid
-from .forms import LoginForm
+from .forms import LoginForm, EditForm
 from .models import User
+from datetime import datetime
 
 
 @app.route('/')
@@ -48,6 +49,10 @@ def logout():
 @app.before_request
 def before_request():
     g.user = current_user
+    if g.user.is_authenticated:
+        g.user.lastseen = datetime.utcnow()
+        db.session.add(g.user)
+        db.session.commit()
 
 
 @oid.after_login
@@ -90,3 +95,19 @@ def user(nickname):
     return render_template('user.html',
                            user=user,
                            posts=posts)
+
+@app.route('/edit', methods=['GET', 'POST'])
+@login_required
+def edit():
+    form = EditForm()
+    if form.validate_on_submit():
+        g.user.nickname = form.nickname.data
+        g.user.aboutme = form.aboutme.data
+        db.session.add(g.user)
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit'))
+    else:
+        form.nickname.data = g.user.nickname
+        form.aboutme.data = g.user.aboutme
+    return render_template('edit.html', form=form)

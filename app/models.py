@@ -7,6 +7,8 @@ class User(db.Model):
     nickname = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    aboutme = db.Column(db.String(256))
+    lastseen = db.Column(db.DateTime)
 
     @property  # Required by Flask-Login
     def is_authenticated(self):
