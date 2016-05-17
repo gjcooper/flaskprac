@@ -21,4 +21,4 @@ MAIL_USERNAME = None
 MAIL_PASSWORD = None
 
 # administrator list
-ADMINS = ['gjcooper+flerror@gmail.com']
+ADMINS = ['gjcooper@gmail.com']
