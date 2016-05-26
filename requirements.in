@@ -9,3 +9,7 @@ flask-wtf
 flask-login
 #Manage openid authorisation
 flask-openid
+#More advanced http functionality
+httplib2
+#Use the excellent requests module
+requests
